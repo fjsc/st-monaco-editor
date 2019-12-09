@@ -1,0 +1,14 @@
+<div class="st-form-field">
+  <label st-label
+    class="st-textarea-title"
+    [ngClass]="{'active': focus, 'disabled': isDisabled}"
+    [attr.for]="name">{{label}}</label>
+  <div class="editor-container" [ngClass]="{'editor-container--active': focus, 'disabled': isDisabled}" #editorElement>
+    <st-monaco-editor
+      class="editor"
+      [config]="monacoConfig"
+      (changeFocus)="changeFocus($event)"
+      (codeChange)="codeChange($event)"></st-monaco-editor>
+    <div class="resize-icon" #scrollElement (mousedown)="onResize($event)" #resizeElement></div>
+  </div>
+</div>

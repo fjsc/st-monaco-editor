@@ -1,0 +1,16 @@
+<h2>Simple Editor example</h2>
+
+<select [formControl]="languageControl">
+  <option [attr.selected]="item.key === languageControl.value || null" *ngFor="let item of initCodes | keyvalue">{{item.key}}</option>
+</select>
+
+<select [formControl]="themeControl">
+  <option [attr.selected]="item.key === themeControl.value || null" *ngFor="let item of themes | keyvalue">{{item.key}}</option>
+</select>
+
+<st-monaco-editor class="editor-example"
+  [config]="config"
+  [language]="languageControl.value"
+  [theme]="themeControl.value"
+  [code]="initCodes[languageControl.value]"></st-monaco-editor>
+
