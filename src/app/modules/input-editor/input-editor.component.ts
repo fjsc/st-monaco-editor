@@ -1,10 +1,10 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: "app-input-editor",
-  templateUrl: "./input-editor.component.html",
-  styleUrls: ["./input-editor.component.scss"],
+  selector: 'app-input-editor',
+  templateUrl: './input-editor.component.html',
+  styleUrls: ['./input-editor.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputEditorComponent {

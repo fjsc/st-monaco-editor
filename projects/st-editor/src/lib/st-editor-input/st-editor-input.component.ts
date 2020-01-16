@@ -112,12 +112,14 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
   }
 
   public codeChange(value: string) {
+    this.code = value;
     this.onChange(value);
   }
 
   public writeValue(value: string): void {
     const _value = value === null ? '' : value;
     this.code = _value;
+    this._cd.markForCheck();
   }
 
   // Registry the change function to propagate internal model changes

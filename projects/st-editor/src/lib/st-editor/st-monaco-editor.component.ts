@@ -20,7 +20,7 @@ import {
   NgZone,
   Inject,
   Optional,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
 
 import { EditorBase } from './../shared/editor-base';
@@ -29,7 +29,7 @@ import { ST_MONACO_EDITOR_CONFIG, StMonacoEditorConfig } from '../st-monaco-edit
 
 @Component({
   selector: 'st-monaco-editor',
-  template: '',
+  template: '<div class="monaco-overlay" *ngIf="readonly"></div>',
   styleUrls: ['./st-monaco-editor.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -48,6 +48,7 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
   @Output() changeFocus = new EventEmitter<boolean>();
 
   private _codeEditorInstance: monaco.editor.IStandaloneCodeEditor;
+  private _currentCode: string;
 
   constructor(
     protected _elementRef: ElementRef,
@@ -58,22 +59,20 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
   }
 
   ngOnChanges(changes: SimpleChanges) {
-
-    // if monaco editor is initilized
     if (this._codeEditorInstance) {
 
-      // if only change the code input field, updates value
-      if (changes.code && Object.keys(changes).length === 1) {
-        // prevents repaint on double binding
-        if (this.code !== null || this.code !== undefined) {
-          this._codeEditorInstance.setValue(this.code);
-        }
-
-        // Restart monaco editor with the updated config
-      } else {
+      if (changes.theme) {
         this._codeEditorInstance.dispose();
         this.initMonaco();
+        return;
       }
+
+      // if only change the code input field, updates value
+      if (this.code !== this._currentCode) {
+        this._codeEditorInstance.setValue(this.code);
+        this._currentCode = this.code;
+      }
+      this._codeEditorInstance.updateOptions(this._getConfig());
     }
   }
 
@@ -85,18 +84,7 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
 
 
   public initMonaco(): void {
-    const config: monaco.editor.IEditorConstructionOptions = {
-      automaticLayout: true,
-      value: this.code,
-      language: this.language,
-      lineNumbers: this.lineNumbers,
-      theme: this.theme,
-      readOnly: this.readonly,
-      minimap: {
-        enabled: this.minimapEnabled
-      },
-      ...this.config
-    };
+    const config: monaco.editor.IEditorConstructionOptions = this._getConfig();
 
     if (this._codeEditorInstance) {
       this._codeEditorInstance.dispose();
@@ -110,6 +98,7 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
         const value = this._codeEditorInstance.getValue();
         this._ngZone.run(() => {
           this.codeChange.emit(value);
+          this._currentCode = value;
         });
       });
 
@@ -125,5 +114,21 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
         });
       });
     });
+  }
+
+  private _getConfig(): monaco.editor.IEditorConstructionOptions {
+    this._currentCode = this.code;
+    return {
+      automaticLayout: true,
+      value: this.code,
+      language: this.language,
+      lineNumbers: this.lineNumbers,
+      theme: this.theme,
+      readOnly: this.readonly,
+      minimap: {
+        enabled: this.minimapEnabled
+      },
+      ...this.config
+    };
   }
 }
