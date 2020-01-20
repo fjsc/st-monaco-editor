@@ -4,13 +4,14 @@
   width: 100%;
   display: block;
   resize: vertical;
+  min-height: 140px;
 }
 
 .st-editor {
   height: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 140px;
+  min-height: inherit;
 
   &__container {
     border: 1px solid var(--st-editor_-_border-color,  $neutral-07);
@@ -30,6 +31,7 @@
 
   &__monaco {
     flex: 1;
+    border-radius: 4px;
   }
 
   &__label {

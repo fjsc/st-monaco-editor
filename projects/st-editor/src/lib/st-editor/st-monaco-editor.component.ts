@@ -21,6 +21,7 @@ import {
   Inject,
   Optional,
   OnDestroy,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import { EditorBase } from './../shared/editor-base';
@@ -31,6 +32,7 @@ import { ST_MONACO_EDITOR_CONFIG, StMonacoEditorConfig } from '../st-monaco-edit
   selector: 'st-monaco-editor',
   template: '<div class="monaco-overlay" *ngIf="readonly"></div>',
   styleUrls: ['./st-monaco-editor.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StMonacoEditorComponent extends EditorBase implements OnChanges, OnDestroy {
@@ -43,6 +45,7 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
   @Input() lineNumbers: ILineNumbers = 'on';
   @Input() theme: StEditorThemes = StEditorThemes.vs;
   @Input() readonly: boolean;
+
 
   @Output() codeChange = new EventEmitter<String>();
   @Output() changeFocus = new EventEmitter<boolean>();
@@ -61,7 +64,8 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
   ngOnChanges(changes: SimpleChanges) {
     if (this._codeEditorInstance) {
 
-      if (changes.theme) {
+
+      if (changes.theme || changes.language) {
         this._codeEditorInstance.dispose();
         this.initMonaco();
         return;
