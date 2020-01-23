@@ -69,6 +69,7 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
   @Input() readonly = false;
   @Input() value: string;
   @Input() theme: StEditorThemes = StEditorThemes.vs;
+  @Input() disabled: boolean;
 
   @Output() blur: EventEmitter<void> = new EventEmitter<void>();
 
@@ -106,7 +107,8 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
       this.monacoConfig = {
         language: this.language,
         automaticLayout: true,
-        lineNumbersMinChars: 2
+        lineNumbersMinChars: 2,
+        scrollBeyondLastLine: false
       };
     }
   }

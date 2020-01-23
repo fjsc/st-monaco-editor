@@ -30,7 +30,7 @@ import { ST_MONACO_EDITOR_CONFIG, StMonacoEditorConfig } from '../st-monaco-edit
 
 @Component({
   selector: 'st-monaco-editor',
-  template: '<div class="monaco-overlay" *ngIf="readonly"></div>',
+  template: '<div class="monaco-overlay" *ngIf="disabled"></div>',
   styleUrls: ['./st-monaco-editor.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -45,7 +45,7 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
   @Input() lineNumbers: ILineNumbers = 'on';
   @Input() theme: StEditorThemes = StEditorThemes.vs;
   @Input() readonly: boolean;
-
+  @Input() disabled: boolean;
 
   @Output() codeChange = new EventEmitter<String>();
   @Output() changeFocus = new EventEmitter<boolean>();
@@ -128,7 +128,7 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
       language: this.language,
       lineNumbers: this.lineNumbers,
       theme: this.theme,
-      readOnly: this.readonly,
+      readOnly: this.readonly || this.disabled,
       minimap: {
         enabled: this.minimapEnabled
       },

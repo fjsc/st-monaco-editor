@@ -9,9 +9,10 @@
   <div class="st-editor__container" #editorElement>
     <st-monaco-editor class="st-editor__monaco"
       [attr.id]="qaTag"
-      class="st-editor__monaco set-input-radius"
+      class="st-editor__monaco st-input-mode"
       [config]="monacoConfig"
       [code]="code"
+      [disabled]="disabled || isDisabled"
       (changeFocus)="changeFocus($event)"
       [readonly]="readonly || isDisabled"
       [theme]="theme"

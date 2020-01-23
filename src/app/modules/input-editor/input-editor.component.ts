@@ -10,6 +10,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class InputEditorComponent {
   public formControl = new FormControl(
     `{
+      "appName": "App1",
       "widget": {
         "debug": "on",
         "window": {
