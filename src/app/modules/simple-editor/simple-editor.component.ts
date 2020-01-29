@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { tsExample, cssExample, sqlExample } from './simple-editor.models';
+import { tsExample, cssExample, sqlExample, jsonExample } from './simple-editor.models';
 import { StEditorThemes } from '@stratio/st-monaco-editor';
 
 @Component({
@@ -14,6 +14,7 @@ export class SimpleEditorComponent {
   public languageControl = new FormControl('typescript');
   public initCodes = {
     typescript: tsExample,
+    json: jsonExample,
     css: cssExample,
     sql: sqlExample,
     python: ''

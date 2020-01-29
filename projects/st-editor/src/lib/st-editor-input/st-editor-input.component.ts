@@ -67,6 +67,7 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
   @Input() errorMessages: { [errorName: string]: string } = {};
   @Input() resizable = true;
   @Input() readonly = false;
+  @Input() validateJson = false;
   @Input() value: string;
   @Input() theme: StEditorThemes = StEditorThemes.vs;
   @Input() disabled: boolean;
@@ -165,6 +166,16 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
       return {
         minLength: true
       };
+    }
+
+    if (this.validateJson) {
+      try {
+        JSON.parse(control.value);
+      } catch (error) {
+        return {
+          invalidJSON: error
+        };
+      }
     }
   }
 

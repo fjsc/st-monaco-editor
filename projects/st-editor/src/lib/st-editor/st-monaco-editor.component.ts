@@ -64,8 +64,7 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
   ngOnChanges(changes: SimpleChanges) {
     if (this._codeEditorInstance) {
 
-
-      if (changes.theme || changes.language) {
+      if (changes.theme || changes.language || changes.config) {
         this._codeEditorInstance.dispose();
         this.initMonaco();
         return;

@@ -1,5 +1,4 @@
-export const tsExample =
-`/**
+export const tsExample = `/**
 * The Flyweight stores a common portion of the state (also called intrinsic
 * state) that belongs to multiple real business entities. The Flyweight accepts
 * the rest of the state (extrinsic state, unique for each entity) via its
@@ -98,10 +97,7 @@ factory.listFlyweights();
 
 `;
 
-
-
-export const cssExample =
-`.button {
+export const cssExample = `.button {
 	display: inline-block;
 	border-radius: 3px;
 	padding: 7px 12px;
@@ -119,8 +115,7 @@ export const cssExample =
 }
 `;
 
-export const sqlExample =
-`select studentID, FullName, sat_score, recordUpdated
+export const sqlExample = `select studentID, FullName, sat_score, recordUpdated
 from student
 where (
 studentID between 1 and 5
@@ -129,3 +124,26 @@ or studentID = 8
 )
 and sat_score NOT in (1000, 1400);
 `;
+
+export const jsonExample = `{
+  "glossary": {
+    "title": "example glossary",
+    "GlossDiv": {
+      "title": "S",
+      "GlossList": {
+        "GlossEntry": {
+        "ID": "SGML",
+        "SortAs": "SGML",
+        "GlossTerm": "Standard Generalized Markup Language",
+        "Acronym": "SGML",
+        "Abbrev": "ISO 8879:1986",
+        "GlossDef": {
+          "para": "A meta-markup language, used to create markup languages such as DocBook.",
+          "GlossSeeAlso": ["GML", "XML"]
+        },
+        "GlossSee": "markup"
+      }
+    }
+    }
+  }
+}`;
