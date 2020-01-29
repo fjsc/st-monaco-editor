@@ -8,6 +8,11 @@ import { FormControl, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputEditorComponent {
+
+  public errorMessages: { [errorName: string]: string } = {
+    required: 'This field is required',
+    invalidJSON: 'JSON format is invalid'
+  };
   public formControl = new FormControl(
     `{
       "appName": "App1",

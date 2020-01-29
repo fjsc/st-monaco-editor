@@ -2,6 +2,14 @@ st-monaco-editor
 ===========================
 Monaco Editor Library for Angular v8 and above
 
+## Demo
+* [Simple Editor](https://stratio.github.io/st-monaco-editor/demo/index.html#/)
+* [Diff Editor](https://stratio.github.io/st-monaco-editor/demo/index.html#/diff-editor)
+* [Input Editor](https://stratio.github.io/st-monaco-editor/demo/index.html#/input-editor)
+
+## Docs
+* [Documentation](https://stratio.github.io/st-monaco-editor/index.html)
+
 ## Download & Installation
 ### Installing
 

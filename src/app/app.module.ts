@@ -19,7 +19,7 @@ import { InputEditorModule } from './modules/input-editor/input-editor.module';
     BrowserModule,
     CommonModule,
     HeaderModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     DiffEditorModule,
     SimpleEditorModule,
     InputEditorModule

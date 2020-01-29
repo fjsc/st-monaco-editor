@@ -54,7 +54,7 @@ import { DOCUMENT } from '@angular/common';
   ]
 })
 export class StEditorInputComponent implements OnChanges, ControlValueAccessor, Validator {
-  /** @Input {boolean} [thin] Option for a thinner header and an arrow marker under active option */
+
   @Input() language: string;
   @Input() label: string;
   @Input() contextualHelp: string;
