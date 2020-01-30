@@ -1,7 +1,7 @@
 <div class="st-editor" [ngClass]="{
   'st-editor--active': focus,
   'st-editor--disabled': isDisabled,
-  'st-editor--error': hasErrors
+  'st-editor--error': (!pristine || forceValidations) && hasErrors
   }">
   <label st-label
     class="st-editor__label"
@@ -19,7 +19,7 @@
       (codeChange)="codeChange($event)"></st-monaco-editor>
     <div class="resize-icon" #scrollElement *ngIf="resizable" (mousedown)="onResize($event)" #resizeElement></div>
   </div>
-  <div class="st-input-error-layout" *ngIf="!focus && errorMessage && errorMessage.length">
+  <div class="st-input-error-layout" *ngIf="(!pristine || forceValidations) && !focus && errorMessage && errorMessage.length">
     <span class="st-input-error-message">{{errorMessage}}</span>
   </div>
 </div>

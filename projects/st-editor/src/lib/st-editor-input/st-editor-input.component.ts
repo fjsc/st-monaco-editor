@@ -83,6 +83,7 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
   public focus: boolean;
   public errorMessage: string;
   public hasErrors: boolean;
+  public pristine = true;
 
   public monacoConfig: IEditorConstructionOptions;
 
@@ -120,6 +121,7 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
 
   public codeChange(value: string) {
     this.code = value;
+    this.pristine = false;
     this.onChange(value);
   }
 
