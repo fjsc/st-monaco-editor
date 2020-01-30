@@ -4,7 +4,7 @@
 
 * Pending changelog
 
-## 1.0.0-1bda6d1 (Built: January 30, 2020 | Pre-release)
+## 1.0.0-6e47f3a (Built: January 30, 2020 | Pre-release)
 
 **Features:**
 * First st-monaco-editor release
