@@ -12,7 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const targetPackagePath = path.join(__dirname, './../projects/st-editor/package.json');
+const targetPackagePath = path.join(__dirname, './../dist/st-monaco-editor/package.json');
 const version = require(path.join(__dirname, './../package.json')).version;
 const destPkg = require(targetPackagePath);
 

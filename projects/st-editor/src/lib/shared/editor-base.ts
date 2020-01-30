@@ -11,6 +11,7 @@
 
 import { AfterViewInit, ElementRef } from '@angular/core';
 import { StMonacoEditorConfig } from '../st-monaco-editor.config';
+import { extendSQL } from './extend-sql';
 
 let loadedMonaco = false;
 let loadPromise: Promise<void>;
@@ -41,8 +42,9 @@ export abstract class EditorBase implements AfterViewInit {
 
           (<any>window).require(['vs/editor/editor.main'], () => {
             if (this._editorConfig && this._editorConfig.onMonacoLoad) {
-              this._editorConfig.onMonacoLoad();
+              this._editorConfig.onMonacoLoad(monaco);
             }
+           extendSQL();
             this.initMonaco();
             resolve();
           });
@@ -60,9 +62,10 @@ export abstract class EditorBase implements AfterViewInit {
         }
       });
     }
-
   }
 
   public abstract initMonaco(): void;
 
 }
+
+

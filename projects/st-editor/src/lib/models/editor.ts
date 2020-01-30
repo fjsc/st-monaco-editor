@@ -9,7 +9,7 @@
  * written authorization from Stratio Big Data Inc., Sucursal en España.
  */
 
- import * as monaco from 'monaco-editor';
+import * as monaco from 'monaco-editor';
 
 /**
  * Default editor themes

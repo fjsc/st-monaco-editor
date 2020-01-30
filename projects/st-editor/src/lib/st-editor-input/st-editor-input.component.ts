@@ -71,6 +71,7 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
   @Input() value: string;
   @Input() theme: StEditorThemes = StEditorThemes.vs;
   @Input() disabled: boolean;
+  @Input() minimapEnabled = true;
 
   @Output() blur: EventEmitter<void> = new EventEmitter<void>();
 
@@ -109,6 +110,9 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
         language: this.language,
         automaticLayout: true,
         lineNumbersMinChars: 2,
+        minimap: {
+          enabled: this.minimapEnabled
+        },
         scrollBeyondLastLine: false
       };
     }
