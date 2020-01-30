@@ -1,6 +1,6 @@
 st-monaco-editor
 ===========================
-Monaco Editor Library for Angular v8 and above
+Monaco Editor Library for Angular v8+ and above
 
 ## Demo
 * [Simple Editor](https://stratio.github.io/st-monaco-editor/demo/index.html#/)
@@ -49,3 +49,17 @@ Add the glob config to assets in angular.json:
     ...
 }
  ```
+
+Import the monaco module into your apps module:
+
+```typescript
+import { NgModule } from '@angular/core';
+import { StMonacoEditorModule } from '@stratio/st-monaco-editor';
+
+@NgModule({
+  imports: [
+    StMonacoEditorModule
+  ]
+})
+export class MyModule {}
+```

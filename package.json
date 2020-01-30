@@ -1,6 +1,6 @@
 {
   "name": "@stratio/st-monaco-editor",
-  "version": "",
+  "version": "1.0.0-SNAPSHOT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -28,7 +28,6 @@
     "@stratio/egeo": "^17.2.1",
     "core-js": "3.4.7",
     "monaco-editor": "0.18.1",
-    "resize-sensor": "0.0.6",
     "rxjs": "6.5.3",
     "tslib": "1.10.0",
     "zone.js": "0.10.2"
