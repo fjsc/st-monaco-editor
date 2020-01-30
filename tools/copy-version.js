@@ -9,25 +9,12 @@
  * written authorization from Stratio Big Data Inc., Sucursal en España.
  */
 
- import * as monaco from 'monaco-editor';
+const fs = require('fs');
+const path = require('path');
 
-/**
- * Default editor themes
- */
-export enum StEditorThemes {
-  vs = 'vs',
-  vsDark = 'vs-dark',
-  hcBlack = 'hc-black'
-}
+const targetPackagePath = path.join(__dirname, './../projects/st-editor/package.json');
+const version = require(path.join(__dirname, './../package.json')).version;
+const destPkg = require(targetPackagePath);
 
-/**
- * Simple editor construction options
- */
-export type IEditorConstructionOptions = monaco.editor.IEditorConstructionOptions;
-
-/**
- * Diff editor construction options
- */
-export type IDiffEditorConstructionOptions = monaco.editor.IDiffEditorConstructionOptions;
-
-export type ILineNumbers =  IEditorConstructionOptions['lineNumbers'];
+destPkg.version = version;
+fs.writeFileSync(targetPackagePath, JSON.stringify(destPkg, null, 2));
