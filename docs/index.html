@@ -31,7 +31,17 @@
                    <div class="content-data">
 
 <h1 id="st-monaco-editor">st-monaco-editor</h1>
-<p>Monaco Editor Library for Angular v8 and above</p>
+<p>Monaco Editor Library for Angular v8+ and above</p>
+<h2 id="demo">Demo</h2>
+<ul>
+<li><a href="https://stratio.github.io/st-monaco-editor/demo/index.html#/">Simple Editor</a></li>
+<li><a href="https://stratio.github.io/st-monaco-editor/demo/index.html#/diff-editor">Diff Editor</a></li>
+<li><a href="https://stratio.github.io/st-monaco-editor/demo/index.html#/input-editor">Input Editor</a></li>
+</ul>
+<h2 id="docs">Docs</h2>
+<ul>
+<li><a href="https://stratio.github.io/st-monaco-editor/index.html">Documentation</a></li>
+</ul>
 <h2 id="download--installation">Download &amp; Installation</h2>
 <h3 id="installing">Installing</h3>
 <p>You can install st-monaco-editor package from npm:</p>
@@ -62,7 +72,16 @@
         }
     },
     ...
-}</code></pre></div>
+}</code></pre></div><p>Import the monaco module into your apps module:</p>
+<div><pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#39;&#64;angular/core&#39;;
+import { StMonacoEditorModule } from &#39;&#64;stratio/st-monaco-editor&#39;;
+
+&#64;NgModule({
+  imports: [
+    StMonacoEditorModule
+  ]
+})
+export class MyModule {}</code></pre></div>
 
 
 
