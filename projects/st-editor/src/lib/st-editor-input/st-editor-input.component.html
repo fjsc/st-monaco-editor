@@ -1,7 +1,7 @@
 <div class="st-editor" [ngClass]="{
-  'st-editor--active': focus,
+  'st-editor--active': focus && !isDisabled,
   'st-editor--disabled': isDisabled,
-  'st-editor--error': (!pristine || forceValidations) && hasErrors
+  'st-editor--error': (!pristine || forceValidations) && hasErrors && !isDisabled
   }">
   <label st-label
     class="st-editor__label"

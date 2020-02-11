@@ -115,7 +115,7 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
         minimap: {
           enabled: this.minimapEnabled
         },
-        scrollBeyondLastLine: false
+        scrollBeyondLastLine: false,
       };
     }
   }
@@ -148,6 +148,7 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
    */
   public setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
+    this._cd.markForCheck();
   }
 
   /**
