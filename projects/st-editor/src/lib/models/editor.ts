@@ -31,3 +31,20 @@ export type IEditorConstructionOptions = monaco.editor.IEditorConstructionOption
 export type IDiffEditorConstructionOptions = monaco.editor.IDiffEditorConstructionOptions;
 
 export type ILineNumbers =  IEditorConstructionOptions['lineNumbers'];
+
+export interface ICreateDependencyRange {
+  startLineNumber: number;
+  endLineNumber: number;
+  startColumn: number;
+  endColumn: number;
+}
+
+export type CompletionItemKindEnum = monaco.languages.CompletionItemKind;
+export type CompletionItemInsertTextRule = monaco.languages.CompletionItemInsertTextRule;
+
+export interface ICompletionItem extends monaco.languages.CompletionItem {
+  kind: CompletionItemKindEnum;
+  insertTextRules?: CompletionItemInsertTextRule;
+}
+
+export type ICreateDependencyProposals = (range: ICreateDependencyRange) => ICompletionItem[];

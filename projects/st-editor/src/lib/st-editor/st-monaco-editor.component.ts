@@ -25,7 +25,7 @@ import {
 } from '@angular/core';
 
 import { EditorBase } from './../shared/editor-base';
-import { IEditorConstructionOptions, StEditorThemes, ILineNumbers } from '../models/editor';
+import { IEditorConstructionOptions, StEditorThemes, ILineNumbers, ICreateDependencyProposals } from '../models/editor';
 import { ST_MONACO_EDITOR_CONFIG, StMonacoEditorConfig } from '../st-monaco-editor.config';
 
 @Component({
@@ -44,14 +44,18 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
   @Input() config: IEditorConstructionOptions = {};
   @Input() lineNumbers: ILineNumbers = 'on';
   @Input() theme: StEditorThemes = StEditorThemes.vs;
+  @Input() registerSuggestions: ICreateDependencyProposals;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
 
   @Output() codeChange = new EventEmitter<String>();
   @Output() changeFocus = new EventEmitter<boolean>();
 
+  public isFocused = false;
+
   private _codeEditorInstance: monaco.editor.IStandaloneCodeEditor;
   private _currentCode: string;
+  private _completionProviderDisp: monaco.IDisposable;
 
   constructor(
     protected _elementRef: ElementRef,
@@ -83,6 +87,10 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
     if (this._codeEditorInstance) {
       this._codeEditorInstance.dispose();
     }
+
+    if (this._completionProviderDisp) {
+      this._completionProviderDisp.dispose();
+    }
   }
 
 
@@ -91,6 +99,14 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
 
     if (this._codeEditorInstance) {
       this._codeEditorInstance.dispose();
+    }
+
+    if (this._completionProviderDisp) {
+      this._completionProviderDisp.dispose();
+    }
+
+    if (this.registerSuggestions) {
+      this._registerCompletionProvider();
     }
 
     this._ngZone.runOutsideAngular(() => {
@@ -108,12 +124,14 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
       this._codeEditorInstance.onDidFocusEditorText(() => {
         this._ngZone.run(() => {
           this.changeFocus.emit(true);
+          this.isFocused = true;
         });
       });
 
       this._codeEditorInstance.onDidBlurEditorText(() => {
         this._ngZone.run(() => {
           this.changeFocus.emit(false);
+          this.isFocused = false;
         });
       });
     });
@@ -133,5 +151,27 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
       },
       ...this.config
     };
+  }
+
+  private _registerCompletionProvider(): void {
+    this._completionProviderDisp = monaco.languages.registerCompletionItemProvider(this.config.language, {
+      provideCompletionItems:  (model, position) => {
+        if (!this.isFocused) {
+          return {
+            suggestions: []
+          };
+        }
+        const word = model.getWordUntilPosition(position);
+        const range = {
+          startLineNumber: position.lineNumber,
+          endLineNumber: position.lineNumber,
+          startColumn: word.startColumn,
+          endColumn: word.endColumn
+        };
+        return {
+          suggestions: this.registerSuggestions(range)
+        };
+      }
+    });
   }
 }

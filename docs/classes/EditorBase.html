@@ -198,8 +198,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">projects/st-editor/src/lib/shared/editor-base.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">projects/st-editor/src/lib/shared/editor-base.ts:65</a></div>
                 </td>
             </tr>
 
@@ -296,7 +296,7 @@ export abstract class EditorBase implements AfterViewInit {
 
           (&lt;any&gt;window).require([&#x27;vs/editor/editor.main&#x27;], () &#x3D;&gt; {
             if (this._editorConfig &amp;&amp; this._editorConfig.onMonacoLoad) {
-              this._editorConfig.onMonacoLoad();
+              this._editorConfig.onMonacoLoad(monaco);
             }
             this.initMonaco();
             resolve();
@@ -315,12 +315,13 @@ export abstract class EditorBase implements AfterViewInit {
         }
       });
     }
-
   }
 
   public abstract initMonaco(): void;
 
 }
+
+
 </code></pre>
     </div>
 </div>

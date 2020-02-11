@@ -1,5 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ICreateDependencyProposals, ICompletionItem } from '@stratio/st-monaco-editor';
+import { sqlLang } from 'src/app/constants/sql';
 
 @Component({
   selector: 'app-input-editor',
@@ -60,7 +62,32 @@ export class InputEditorComponent {
       }`);
   }
 
+
   public reset() {
     this.formControl.reset();
   }
+
+  public suggestionsFn: ICreateDependencyProposals = (range)  => {
+    // returning a static list of proposals, not even looking at the prefix (filtering is done by the Monaco editor),
+    // here you could do a server side lookup
+    const keywords: Array<ICompletionItem> = sqlLang.keywords.map((keyword): ICompletionItem => {
+      return {
+        label: keyword,
+        kind: monaco.languages.CompletionItemKind.Function,
+        insertText: keyword,
+        range: range
+      };
+    });
+
+    const operators: Array<ICompletionItem> = sqlLang.operators.map((operator): ICompletionItem => {
+      return {
+        label: operator,
+        kind: monaco.languages.CompletionItemKind.Operator,
+        insertText: operator,
+        range: range
+      };
+    });
+    return keywords.concat(operators);
+  }
+
 }

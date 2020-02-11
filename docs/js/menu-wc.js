@@ -106,6 +106,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
+                                <a href="interfaces/ICompletionItem.html" data-type="entity-link">ICompletionItem</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ICreateDependencyRange.html" data-type="entity-link">ICreateDependencyRange</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/StMonacoEditorConfig.html" data-type="entity-link">StMonacoEditorConfig</a>
                             </li>
                         </ul>

@@ -32,7 +32,7 @@ import {
   ValidationErrors,
   FormControl,
 } from '@angular/forms';
-import { IEditorConstructionOptions, StEditorThemes } from '../models/editor';
+import { IEditorConstructionOptions, StEditorThemes, ICreateDependencyProposals } from '../models/editor';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -72,6 +72,7 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
   @Input() theme: StEditorThemes = StEditorThemes.vs;
   @Input() disabled: boolean;
   @Input() minimapEnabled = true;
+  @Input() registerSuggestions: ICreateDependencyProposals;
 
   @Output() blur: EventEmitter<void> = new EventEmitter<void>();
 

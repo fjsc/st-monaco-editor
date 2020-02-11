@@ -6,15 +6,12 @@
     [validateJson]="true"
     [maxLength]="1000"
     [errorMessages]="errorMessages"
-    [language]="'json'"></st-editor-input>
+    [registerSuggestions]="suggestionsFn"
+    [language]="'sql'"></st-editor-input>
     <section class="editor-input__buttons">
       <button (click)="setValue()" class="button button-link-primary" >Set template value</button>
       <button (click)="reset()" class="button button-link-primary" >Reset values</button>
     </section>
 
-
-  VALID: {{formControl.valid}}
-
-  {{formControl.errors | json}}
   <br>
 </article>
