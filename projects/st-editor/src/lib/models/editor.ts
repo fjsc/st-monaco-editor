@@ -39,7 +39,7 @@ export interface ICreateDependencyRange {
   endColumn: number;
 }
 
-export import CompletionItemKindEnum = monaco.languages.CompletionItemKind;
+export type CompletionItemKindEnum = monaco.languages.CompletionItemKind;
 export type CompletionItemInsertTextRule = monaco.languages.CompletionItemInsertTextRule;
 
 export interface ICompletionItem extends monaco.languages.CompletionItem {
