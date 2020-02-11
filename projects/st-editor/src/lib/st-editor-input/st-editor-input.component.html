@@ -18,9 +18,14 @@
       [readonly]="readonly || isDisabled"
       [theme]="theme"
       (codeChange)="codeChange($event)"></st-monaco-editor>
-    <div class="resize-icon" #scrollElement *ngIf="resizable" (mousedown)="onResize($event)" #resizeElement></div>
+    <div class="resize-icon"
+      [ngClass]="{'resize-icon--disabled': isDisabled}"
+      #scrollElement
+      *ngIf="resizable"
+      (mousedown)="onResize($event)"
+      #resizeElement></div>
   </div>
-  <div class="st-input-error-layout" *ngIf="(!pristine || forceValidations) && !focus && errorMessage && errorMessage.length">
+  <div class="st-input-error-layout" *ngIf="(!pristine || forceValidations) && !focus && errorMessage && errorMessage.length && !isDisabled">
     <span class="st-input-error-message">{{errorMessage}}</span>
   </div>
 </div>
