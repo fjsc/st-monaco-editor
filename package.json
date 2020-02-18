@@ -11,7 +11,7 @@
     "compodoc": "compodoc projects/st-editor -n StMonacoEditor -p projects/st-editor/tsconfig.lib.json -d docs",
     "docs:stats": "ts-stats",
     "package": "npm run build",
-    "deploy": "node tools/copy-version.js && npm publish './dist/st-monaco-editor'",
+    "deploy": "npm publish './dist/st-monaco-editor'",
     "test": "echo 'test'",
     "lint": "ng lint",
     "e2e": "ng e2e"
