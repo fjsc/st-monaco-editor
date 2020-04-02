@@ -1,6 +1,10 @@
 # Changelog
 
-## 2.0.0 (upcoming)
+## 2.1.0 (upcoming)
+
+* Pending changelog
+
+## 2.0.0-f68a201 (Built: April 02, 2020 | Pre-release)
 
 **New features:**
 
