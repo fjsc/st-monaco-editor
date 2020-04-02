@@ -47,15 +47,18 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
   @Input() registerSuggestions: ICreateDependencyProposals;
   @Input() readonly: boolean;
   @Input() disabled: boolean;
+  @Input() folded: boolean;
 
   @Output() codeChange = new EventEmitter<String>();
   @Output() changeFocus = new EventEmitter<boolean>();
+  @Output() initEditor = new EventEmitter<void>();
 
   public isFocused = false;
 
   private _codeEditorInstance: monaco.editor.IStandaloneCodeEditor;
   private _currentCode: string;
   private _completionProviderDisp: monaco.IDisposable;
+  private _initialized = false;
 
   constructor(
     protected _elementRef: ElementRef,
@@ -110,7 +113,6 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
     }
 
     this._ngZone.runOutsideAngular(() => {
-
       this._codeEditorInstance = monaco.editor.create(this._elementRef.nativeElement, config);
 
       this._codeEditorInstance.getModel().onDidChangeContent(e => {
@@ -135,6 +137,22 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
         });
       });
     });
+
+    if (!this._initialized) {
+      this._initialized = true;
+      if (this.folded) {
+        this.fold();
+      }
+      this.initEditor.emit();
+    }
+  }
+
+  public fold() {
+    this._codeEditorInstance.trigger('fold', 'editor.foldAll', null);
+  }
+
+  public unfold() {
+    this._codeEditorInstance.trigger('unfold', 'editor.unfoldAll', null);
   }
 
   private _getConfig(): monaco.editor.IEditorConstructionOptions {
@@ -155,7 +173,7 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
 
   private _registerCompletionProvider(): void {
     this._completionProviderDisp = monaco.languages.registerCompletionItemProvider(this.config.language, {
-      provideCompletionItems:  (model, position) => {
+      provideCompletionItems: (model, position) => {
         if (!this.isFocused) {
           return {
             suggestions: []

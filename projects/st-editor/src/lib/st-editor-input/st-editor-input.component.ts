@@ -34,6 +34,7 @@ import {
 } from '@angular/forms';
 import { IEditorConstructionOptions, StEditorThemes, ICreateDependencyProposals } from '../models/editor';
 import { DOCUMENT } from '@angular/common';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'st-editor-input',
@@ -73,8 +74,10 @@ export class StEditorInputComponent implements OnChanges, ControlValueAccessor, 
   @Input() disabled: boolean;
   @Input() minimapEnabled = true;
   @Input() registerSuggestions: ICreateDependencyProposals;
+  @Input() folded: boolean;
 
   @Output() blur: EventEmitter<void> = new EventEmitter<void>();
+  @Output() initEditor = new EventEmitter<void>();
 
   @ViewChild('scrollElement', { static: false }) scrollElement: ElementRef;
   @ViewChild('editorElement', { static: true, read: ElementRef }) editor: ElementRef;

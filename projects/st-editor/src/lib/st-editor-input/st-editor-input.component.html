@@ -13,10 +13,12 @@
       [config]="monacoConfig"
       [code]="code"
       [disabled]="disabled || isDisabled"
+      [folded]="folded"
       [registerSuggestions]="registerSuggestions"
       (changeFocus)="changeFocus($event)"
       [readonly]="readonly || isDisabled"
       [theme]="theme"
+      (initEditor)="initEditor.emit()"
       (codeChange)="codeChange($event)"></st-monaco-editor>
     <div class="resize-icon"
       [ngClass]="{'resize-icon--disabled': isDisabled}"
