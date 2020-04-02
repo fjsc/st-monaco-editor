@@ -6,7 +6,7 @@
 
 * Folded functionallity
 
-## 20.0.0 (January 30, 2020)
+## 1.0.0 (January 30, 2020)
 
 **Features:**
 * First st-monaco-editor release
