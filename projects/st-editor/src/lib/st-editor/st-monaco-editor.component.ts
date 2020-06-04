@@ -79,9 +79,10 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
 
       // if only change the code input field, updates value
       if (this.code !== this._currentCode) {
-        this._codeEditorInstance.setValue(this.code);
+        this._codeEditorInstance.setValue(this.code || '');
         this._currentCode = this.code;
       }
+
       this._codeEditorInstance.updateOptions(this._getConfig());
     }
   }
@@ -159,7 +160,7 @@ export class StMonacoEditorComponent extends EditorBase implements OnChanges, On
     this._currentCode = this.code;
     return {
       automaticLayout: true,
-      value: this.code,
+      value: this.code || '',
       language: this.language,
       lineNumbers: this.lineNumbers,
       theme: this.theme,

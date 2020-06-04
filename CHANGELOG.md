@@ -2,9 +2,11 @@
 
 ## 2.1.0 (upcoming)
 
-* Pending changelog
+**Fixed bugs:**
 
-## 2.0.0-f68a201 (Built: April 02, 2020 | Released: April 02, 2020)
+* Prevent null values
+
+## 2.0.0 (Built: April 02, 2020 | Released: April 02, 2020)
 
 **New features:**
 

@@ -1,6 +1,6 @@
 {
   "name": "@stratio/st-monaco-editor",
-  "version": "3.0.0-SNAPSHOT",
+  "version": "2.1.0-SNAPSHOT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,6 +12,7 @@
     "docs:stats": "ts-stats",
     "package": "npm run build",
     "deploy": "npm publish './dist/st-monaco-editor'",
+    "replace": "json -I -f ./projects/st-editor/package.json -e",
     "test": "echo 'test'",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -28,6 +29,7 @@
     "@stratio/egeo": "^17.2.1",
     "core-js": "3.4.7",
     "monaco-editor": "0.18.1",
+    "json": "9.0.6",
     "rxjs": "6.5.3",
     "tslib": "1.10.0",
     "zone.js": "0.10.2"
