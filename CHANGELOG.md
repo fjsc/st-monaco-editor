@@ -1,10 +1,10 @@
 # Changelog
 
-## 4.0.0 (upcoming)
+## 3.1.0 (upcoming)
 
 * Pending changelog
 
-## 3.0.0 (upcoming)
+## 3.0.0
 
 **Fixed bugs:**
 
